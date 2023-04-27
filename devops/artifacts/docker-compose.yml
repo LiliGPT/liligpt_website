@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  liligpt_website:
+    image: node:18-alpine
+    container_name: liligpt_website
+    working_dir: /app/dist
+    restart: unless-stopped
+    volumes:
+      - ./dist:/app/dist
+    # command: ['yarn', '--production', ';', 'yarn', 'start', '/app/dist', '-p', '8000']
+    command: ['npm', 'start', '/app/dist']
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "28170:3000"
