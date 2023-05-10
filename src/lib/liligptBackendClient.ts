@@ -16,6 +16,7 @@ class LiliGPTBackendClient {
     });
 
     if (!response.ok) {
+      console.error('Failed to send auth to vscode', response);
       throw new Error("Failed to send auth to vscode");
     }
   }

@@ -20,23 +20,27 @@ export default function VSCodeCallback() {
   const [message, setMessage] = useState("Loading...");
 
   useEffect(() => {
+    console.log('----------- 1');
     // if user is not logged in, show error
     if (!session) {
       setMessage("Invalid authentication session");
       return;
     }
+    console.log('----------- 2');
     // get tokens from session
     const { accessToken, refreshToken } = session as AppSession;
     if (!accessToken || !refreshToken) {
       setMessage("Invalid authentication tokens");
       return;
     }
+    console.log('----------- 3');
     // get nonce
     const nonce = getNonce();
     if (!nonce) {
       setMessage("Invalid authentication code");
       return;
     }
+    console.log('----------- 4');
     // send auth to vscode
     liligptBackendClient
       .sendAuthToVscode({

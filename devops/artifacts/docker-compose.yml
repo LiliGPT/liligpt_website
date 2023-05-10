@@ -9,8 +9,8 @@ services:
     volumes:
       - ./dist:/app/dist
     # command: ['yarn', '--production', ';', 'yarn', 'start', '/app/dist', '-p', '8000']
-    command: ['npm', 'start', '/app/dist']
+    command: [ 'npm', 'start', '/app/dist' ]
     environment:
       - NODE_ENV=production
     ports:
-      - "28170:3000"
+      - "28170:28170"

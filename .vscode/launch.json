@@ -8,6 +8,25 @@
       "command": "devops/scripts/deploy-dev.sh",
       "terminalIndex": -1,
       "terminalName": "Deploy dev",
+    },
+    // debug nextjs app
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Next: Debug",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/node_modules/next/dist/bin/next",
+      "args": [
+        "dev"
+      ],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "--inspect"
+      ]
     }
   ]
 }
