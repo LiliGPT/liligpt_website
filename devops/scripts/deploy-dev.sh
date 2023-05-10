@@ -5,16 +5,8 @@
 
 # Running:
 # 1.
-# Define these variables in your .env file in the root of this repo:
-#  DEV_SERVER_IP=''
-#  DEV_SERVER_USER=''
-#  DEV_SERVER_KEY='/home/username/.ssh/privatekey.pem'
-#  DEV_SERVER_DEPLOY_DIR='/home/username/liligptfront'
-#  APP_PUBLIC_URL='http://remoteip:28090/'
-#  REACT_APP_KEYCLOAK_URL='https://mykeycloak:8081/auth'
-#  REACT_APP_KEYCLOAK_REALM=''
-#  REACT_APP_KEYCLOAK_CLIENT_ID='account'
-# 
+# Create the file `devops/scripts/.env`
+# using the example file at `devops/scripts/.env.example`
 # 2.
 # then run:
 # bash devops/scripts/deploy-dev.sh
@@ -25,14 +17,15 @@ function main() {
 
   # load env
   set -a
-  source "$ROOT/.env"
+  source "$HERE/.env" || \
+    die "Failed to load env file"
   set +a
 
   echo "DEV_SERVER_IP=$DEV_SERVER_IP"
   echo "DEV_SERVER_USER=$DEV_SERVER_USER"
   echo "DEV_SERVER_KEY=$DEV_SERVER_KEY"
   echo "DEV_SERVER_DEPLOY_DIR=$DEV_SERVER_DEPLOY_DIR"
-  echo "REACT_APP_PUBLIC_URL=$REACT_APP_PUBLIC_URL"
+  echo "APP_PUBLIC_URL=$APP_PUBLIC_URL"
   echo ""
 
   # build
@@ -63,7 +56,7 @@ function main() {
     die "Failed to restart the container"
   echo ""
   # echo "Open: http://$DEV_SERVER_IP:28090"
-  echo "Open: $REACT_APP_PUBLIC_URL"
+  echo "Open: $APP_PUBLIC_URL"
   echo ""
   echo "Done!"
 }
