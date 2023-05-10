@@ -50,6 +50,10 @@ function main() {
   copy_file \
     "$ROOT/devops/artifacts/docker-compose.yml" "$DEV_SERVER_DEPLOY_DIR" || \
     die "Failed to copy docker-compose.yml file"
+  # copy .env file
+  copy_file \
+    "$ROOT/.env" "$DEV_SERVER_DEPLOY_DIR" || \
+    die "Failed to copy .env file"
   # restart the container
   run_ssh_command \
     "cd '$DEV_SERVER_DEPLOY_DIR' && docker compose up -d --force-recreate" || \

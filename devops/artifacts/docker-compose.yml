@@ -8,9 +8,11 @@ services:
     restart: unless-stopped
     volumes:
       - ./dist:/app/dist
+      - ./.env:/app/.env
     # command: ['yarn', '--production', ';', 'yarn', 'start', '/app/dist', '-p', '8000']
     command: [ 'npm', 'start', '/app/dist' ]
+    env_file: [ '.env' ]
     environment:
-      - NODE_ENV=production
+      NODE_ENV: 'production'
     ports:
       - "28170:28170"
